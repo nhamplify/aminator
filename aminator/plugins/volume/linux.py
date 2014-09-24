@@ -64,7 +64,7 @@ class LinuxVolumePlugin(BaseVolumePlugin):
             if self._blockdevice.partition is not None:
                 dev = '{0}{1}'.format(dev,self._blockdevice.partition)
             
-            mountspec = MountSpec(dev, None, self._mountpoint, None)
+            mountspec = MountSpec(dev, None, self._mountpoint, 'nouuid')
 
             result = mount(mountspec)
             if not result.success:

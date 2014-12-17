@@ -77,6 +77,12 @@ class TaggingBaseFinalizerPlugin(BaseFinalizerPlugin):
 
         metadata['suffix'] = suffix
 
+        virt = context.ami.get('vm_type', None)
+        if virt == 'paravirtual':
+            virt = 'pv'
+
+        metadata['vm_type'] = virt
+
         for tag in config.tag_formats:
             try:
                 context.ami.tags[tag] = config.tag_formats[tag].format(**metadata)
